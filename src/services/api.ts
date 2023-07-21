@@ -1,30 +1,28 @@
 import axios from "axios";
+import { tokenStore } from "../stores/auth";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL as string;
 
 axios.defaults.baseURL = API_BASE_URL;
 
-export interface IUser {
+tokenStore.subscribe((v) => {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${v}`;
+});
+
+export type ExamDTO = {
+  id: number;
   name: string;
-  login: string;
-  bio: string;
-  followers: { totalCount: number };
-}
+  duration: number;
+};
 
 export default {
-  getMostFollowedUsers: async (country: string) => {
-    try {
-      const response = await axios.get<IUser[]>(
-        `/most_followed_users?country=${country}`
-      );
-      return response.data;
-    } catch (error) {
-      console.error(error);
-      throw new Error(
-        `Error retrieving most followed users for country ${country}: ${
-          error.response?.data?.message || error.message
-        }`
-      );
-    }
+  users: {
+    signup: ({ name, age }) => axios.post("/users/signup", { name, age }),
+  },
+  exams: {
+    getAll: async () => {
+      const response = await axios.get("/exams");
+      return response.data.data.exams as ExamDTO[];
+    },
   },
 };

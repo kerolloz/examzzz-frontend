@@ -1,15 +1,23 @@
 <script lang="ts">
   import { Route, Router } from "svelte-routing";
-  import Register from "./components/Register.svelte";
+  import Exams from "./pages/Exams.svelte";
+  import Register from "./pages/Register.svelte";
+  import { userStore } from "./stores/auth";
   export let url = "";
 </script>
 
 <main class="main-wrapper">
   <div class="ui middle aligned grid vertical stripe middle-content">
     <div class="ui container">
+      {#if $userStore}
+        <p>Logged in as "{$userStore.name}".</p>
+      {/if}
       <Router {url}>
         <Route path="/">
           <Register />
+        </Route>
+        <Route path="/exams">
+          <Exams />
         </Route>
       </Router>
     </div>
