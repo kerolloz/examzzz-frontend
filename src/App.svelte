@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Route, Router } from "svelte-routing";
+  import ExamQuestions from "./pages/ExamQuestions.svelte";
   import Exams from "./pages/Exams.svelte";
   import Register from "./pages/Register.svelte";
   import { userStore } from "./stores/auth";
@@ -18,6 +19,9 @@
         </Route>
         <Route path="/exams">
           <Exams />
+        </Route>
+        <Route path="/exams/:examId" let:params>
+          <ExamQuestions examId={params.examId} />
         </Route>
       </Router>
     </div>

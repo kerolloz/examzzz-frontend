@@ -15,6 +15,19 @@ export type ExamDTO = {
   duration: number;
 };
 
+export type ExamQuestionDTO = {
+  id: number;
+  examId: number;
+  questionId: number;
+  question: {
+    id: number;
+    text: string;
+    answers: string[];
+    type: "MULTIPLE_CHOICE";
+    scoring: "AUTOMATIC";
+  };
+};
+
 export default {
   users: {
     signup: ({ name, age }) => axios.post("/users/signup", { name, age }),
@@ -23,6 +36,19 @@ export default {
     getAll: async () => {
       const response = await axios.get("/exams");
       return response.data.data.exams as ExamDTO[];
+    },
+    questions: {
+      getAll: async (examId: number) => {
+        const response = await axios.get(`/exams/${examId}/questions`);
+        return response.data.data.questions as ExamQuestionDTO[];
+      },
+      answer: async (examQuestionId, answerText) => {
+        const response = await axios.put(
+          `/exam-questions/${examQuestionId}/answer`,
+          { answerText }
+        );
+        return response.data.data;
+      },
     },
   },
 };
