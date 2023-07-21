@@ -24,7 +24,7 @@
 <main class="register-form">
   <div class="ui blue inverted segment register-form-container">
     <center>
-      <h1 class="">Welcome To The Final Exam</h1>
+      <h1>Welcome To The Final Exam</h1>
       <h2>Please fill in the form below to start the exam</h2>
       <br />
     </center>
@@ -52,7 +52,7 @@
         />
       </div>
 
-      <button class="ui button" type="submit">Submit</button>
+      <button class="ui button" type="submit">Start Exam</button>
     </form>
   </div>
 </main>
