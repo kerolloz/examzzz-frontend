@@ -3,6 +3,7 @@
   import ExamQuestions from "./pages/ExamQuestions.svelte";
   import Exams from "./pages/Exams.svelte";
   import Register from "./pages/Register.svelte";
+  import ThanksPage from "./pages/ThanksPage.svelte";
   import { userStore } from "./stores/auth";
   export let url = "";
 </script>
@@ -22,6 +23,9 @@
         </Route>
         <Route path="/exams/:examId" let:params>
           <ExamQuestions examId={params.examId} />
+        </Route>
+        <Route path="thanks">
+          <ThanksPage />
         </Route>
       </Router>
     </div>
