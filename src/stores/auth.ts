@@ -27,3 +27,5 @@ export const userStore = writable(
 export const tokenStore = writable(
   localStorage.getItem("token") ? localStorage.getItem("token") : null
 );
+
+export const colorsIndex = writable(0);
