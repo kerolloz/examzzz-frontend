@@ -16,7 +16,15 @@
 
 <div class="ui big segment {colors[i % colors.length]}">
   <div class="grouped fields question-element">
-    <label for="">{examQuestion.question.text}</label>
+    <p>
+      <label for="">{examQuestion.question.text}</label>
+    </p>
+    <div>
+      {#if examQuestion.question.imageUrl}
+        <img src={examQuestion.question.imageUrl} alt="" />
+      {/if}
+    </div>
+
     {#each examQuestion.question.answers as answer}
       <div class="field answer-element">
         <div class="ui radio checkbox">

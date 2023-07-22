@@ -23,6 +23,7 @@ export type ExamQuestionDTO = {
     id: number;
     text: string;
     answers: string[];
+    imageUrl?: string;
     type: "MULTIPLE_CHOICE";
     scoring: "AUTOMATIC";
   };
