@@ -25,16 +25,19 @@
       {/if}
     </div>
 
-    {#each examQuestion.question.answers as answer}
+    {#each examQuestion.question.answers as answer, index}
       <div class="field answer-element">
         <div class="ui radio checkbox">
           <input
+            id="a-{examQuestion.id}-{index}"
             type="radio"
             name="a-{examQuestion.id}"
             value={answer}
             on:change={() => saveSelectedAnswer(answer, examQuestion.id)}
           />
-          <label for="">{answer}</label>
+          <label style="white-space: pre-line" for="a-{examQuestion.id}-{index}"
+            >{answer}</label
+          >
         </div>
       </div>
     {/each}
