@@ -1,5 +1,7 @@
 <script lang="ts">
   import { Route, Router } from "svelte-routing";
+  import AdminLogin from "./pages/AdminLogin.svelte";
+  import Dashboard from "./pages/Dashboard.svelte";
   import ExamQuestions from "./pages/ExamQuestions.svelte";
   import Exams from "./pages/Exams.svelte";
   import Register from "./pages/Register.svelte";
@@ -26,6 +28,12 @@
         </Route>
         <Route path="thanks">
           <ThanksPage />
+        </Route>
+        <Route path="administrator">
+          <AdminLogin />
+        </Route>
+        <Route path="dashboard">
+          <Dashboard />
         </Route>
       </Router>
     </div>

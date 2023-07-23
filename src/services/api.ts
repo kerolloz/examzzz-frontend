@@ -29,6 +29,24 @@ export type ExamQuestionDTO = {
   };
 };
 
+export type ScoreDTO = {
+  id: number;
+  examId: number;
+  studentId: number;
+  score: number;
+  totalScore: number;
+  exam: {
+    id: number;
+    name: string;
+    duration: number;
+  };
+  student: {
+    id: number;
+    name: string;
+    age: number;
+  };
+};
+
 export default {
   users: {
     signup: ({ name, age }) => axios.post("/users/signup", { name, age }),
@@ -50,6 +68,23 @@ export default {
         );
         return response.data.data;
       },
+    },
+  },
+  admins: {
+    login: async ({ username, password }) => {
+      const response = await axios.post("/admins/login", {
+        username,
+        password,
+      });
+      return response.data.data.token as string;
+    },
+  },
+  scores: {
+    getAll: async (filter: { examId?: string; studentId?: string } = {}) => {
+      const params = new URLSearchParams(filter);
+      return axios.get(`/scores?${params.toString()}`).then((response) => {
+        return response.data.scores as ScoreDTO[];
+      });
     },
   },
 };
